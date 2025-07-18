@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私の最初のホームページ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #4182fa;
+            color: #333333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #4182fa;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2c5aa0;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #4182fa;
+            padding-bottom: 10px;
+        }
+
+        .info-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(65, 130, 250, 0.1);
+            border-radius: 10px;
+            border-left: 5px solid #4182fa;
+        }
+
+        .info-section h3 {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-section h3::before {
+            content: "✨";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .name h3::before {
+            content: "👋";
+        }
+
+        .university h3::before {
+            content: "🎓";
+        }
+
+        .hobbies h3::before {
+            content: "🎮";
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            margin-left: 30px;
+        }
+
+        .hobby-list {
+            margin-left: 30px;
+        }
+
+        .hobby-item {
+            display: inline-block;
+            background-color: #4182fa;
+            color: white;
+            padding: 8px 15px;
+            margin: 5px 5px 5px 0;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .hobby-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(65, 130, 250, 0.3);
+        }
+
+        /* 画像のサイズ調整 */
+        img.sample {
+            width: 300px;
+            height: auto;
+            border: 1px solid #ccc;
+            display: none; /* 初期状態で非表示 */
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        img.sample.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hobby-item.clickable {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .hobby-item.clickable::after {
+            content: "👆";
+            position: absolute;
+            top: -25px;
+            right: -10px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .hobby-item.clickable:hover::after {
+            opacity: 1;
+        }
+
+        .welcome-animation {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>私の最初のホームページ</h1>
+        <h2 class="welcome-animation">ようこそ！</h2>
+        
+        <div class="info-section name">
+            <h3>お名前</h3>
+            <p>山田優太</p>
+        </div>
+
+        <div class="info-section university">
+            <h3>所属</h3>
+            <p>日本大学理工学研究科電子工学専攻</p>
+        </div>
+
+        <div class="info-section hobbies">
+            <h3>趣味</h3>
+            <div class="hobby-list">
+                <span class="hobby-item clickable" ondblclick="toggleImage()">音ゲー</span>
+                <span class="hobby-item">FPS</span>
+                <span class="hobby-item">ハンドボール</span>
+                <span class="hobby-item">読書</span>
+            </div>
+        </div>
+
+        <!-- 画像を表示させたい位置 -->
+        <img src="images/sample.png" alt="サンプル画像" class="sample" id="sampleImage" />
+    </div>
+
+    <script>
+        function toggleImage() {
+            const image = document.getElementById('sampleImage');
+            if (image.classList.contains('show')) {
+                image.classList.remove('show');
+                setTimeout(() => {
+                    image.style.display = 'none';
+                }, 300);
+            } else {
+                image.style.display = 'block';
+                setTimeout(() => {
+                    image.classList.add('show');
+                }, 10);
+            }
+        }
+    </script>
+</body>
+</html>
